@@ -71,6 +71,8 @@
                                                     <td>
                                                         <%= data[i].author %>
                                                     </td>
+                                                    
+                                                    <!-- convert to datetime format -->
                                                     <td>
                                                         <%= data[i].created_at ? new Date(data[i].created_at).toLocaleString() : '' %> %>
                                                     </td>
