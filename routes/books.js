@@ -6,17 +6,20 @@ const { format, parseISO } = require("date-fns");
 // display books
 router.get("/", (req, res, next) => {
   dbCon.query("SELECT * FROM books ORDER BY id ", (err, rows) => {
+
     if (err) {
       req.flash("error", err);
       res.redirect("books", { data: "" });
     } else {
+      console.log("data:", rows); // Log the retrieved rows to check the data
       res.render("books", {
-         data: rows
+        data: rows
 
-        });
+      });
     }
   });
 });
+
 
 
 //display add books page

@@ -20,83 +20,85 @@
 
 <body class="container mt-5">
 
-    <% if (messages.error) { %>
-        <div class="alert alert-danger" role="alert">
-            <%= messages.error %>
-        </div>
-        <% } %>
 
-            <% if (messages.success) { %>
-                <div class="alert alert-success" role="alert">
-                    <%= messages.success %>
-                </div>
-                <% } %>
+        <% if (messages.error) { %>
+            <div class="alert alert-danger" role="alert">
+                <%= messages.error %>
+            </div>
+            <% } %>
 
-                    <div class="card">
-                        <div class="card-header">
-                            <ul class="nav nav-pills w-100">
-                                <li class="nav-link">Books</li>
-                                <li class="nav-link ml-auto">
-                                    <a href="/books/add" class="nav-link active">Add Book</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="card-body">
-                            <% if (data.length) { %>
-                                <table class="text-center table">
-
-                                    <thead>
-                                        <tr>
-
-                                            <th scope="col">#</th>
-                                            <th scope="col">Name</th>
-                                            <th scope="col">Author</th>
-                                            <th scope="col">เวลา</th>
-                                            <th scope="col">แก้ไขล่าสุด</th>
-                                            <th width="200px">Action</th>
-
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <% for(let i=0;i< data.length;i++) {%>
-                                            <tr>
-                                                <th scope="row">
-                                                    <%= data[i].id %>
-                                                </th>
-                                                <td>
-                                                    <%= data[i].name %>
-                                                </td>
-                                                <td>
-                                                    <%= data[i].author %>
-                                                </td>
-                                                <td>
-                                                    <%= data[i].created_at %>
-                                                </td>
-                                                <td>
-                                                   
-                                                </td>
-
-                                                <td>
-                                                    <a href="../books/edit/<%= data[i].id %>"
-                                                        class="btn btn-success ">Edit</a>
-                                                    <a href="../books/delete/<%= data[i].id %>"
-                                                        onclick="return alert('Are you sure')"
-                                                        class="btn btn-danger ">Delete</a>
-                                                </td>
-                                            </tr>
-
-                                            <% } %>
-                                    </tbody>
-                                </table>
-                                <% } %>
-
-                                    <!-- //if result is empty -->
-                                    <% if (!data.length) {%>
-                                        <p class="text-center mt-3">No book found!</p>
-                                        <% } %>
-                        </div>
+                <% if (messages.success) { %>
+                    <div class="alert alert-success" role="alert">
+                        <%= messages.success %>
                     </div>
+                    <% } %>
 
+                        <div class="card">
+                            <div class="card-header">
+                                <ul class="nav nav-pills w-100">
+                                    <li class="nav-link">Books</li>
+                                    <li class="nav-link ml-auto">
+                                        <a href="/books/add" class="nav-link active">Add Book</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="card-body">
+                                <% if (data.length) { %>
+
+                                    <table class="text-center table">
+
+                                        <thead>
+                                            <tr>
+
+                                                <th scope="col">#</th>
+                                                <th scope="col">Name</th>
+                                                <th scope="col">Author</th>
+                                                <th scope="col">เวลา</th>
+                                                <th scope="col">แก้ไขล่าสุด</th>
+                                                <th width="200px">Action</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <% for(let i=0;i< data.length;i++) {%>
+                                                <tr>
+                                                    <th scope="row">
+                                                        <%= data[i].id %>
+                                                    </th>
+                                                    <td>
+                                                        <%= data[i].name %>
+                                                    </td>
+                                                    <td>
+                                                        <%= data[i].author %>
+                                                    </td>
+                                                    <td>
+                                                        <%= data[i].created_at ? new Date(data[i].created_at).toLocaleString() : '' %> %>
+                                                    </td>
+                                                
+                                                    <td><%= data[i]['updated-at'] ? new Date(data[i]['updated-at']).toLocaleString() : '' %></td>
+                                                
+
+                                                    <td>
+                                                        <a href="../books/edit/<%= data[i].id %>"
+                                                            class="btn btn-success ">Edit</a>
+                                                        <a href="../books/delete/<%= data[i].id %>"
+                                                            onclick="return alert('Are you sure')"
+                                                            class="btn btn-danger ">Delete</a>
+                                                    </td>
+                                                </tr>
+
+                                                <% } %>
+                                        </tbody>
+                                    </table>
+                                    <% } %>
+
+                                        <!-- //if result is empty -->
+                                        <% if (!data.length) {%>
+                                            <p class="text-center mt-3">No book found!</p>
+                                            <% } %>
+                            </div>
+                        </div>
+                        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
 </body>
 
 </html>
